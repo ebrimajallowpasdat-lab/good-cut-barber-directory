@@ -14,9 +14,25 @@ if (process.env.NODE_ENV === 'production' && !databaseUrl) {
   throw new Error('DATABASE_URL must be set in production so site data is stored persistently.');
 }
 
+if (process.env.NODE_ENV === 'production' && !isConfiguredSecret(process.env.RATE_LIMIT_SECRET)) {
+  throw new Error('RATE_LIMIT_SECRET must be set to a secret of at least 32 characters in production.');
+}
+
+if (process.env.NODE_ENV === 'production' && !isConfiguredSecret(process.env.ADMIN_API_TOKEN)) {
+  throw new Error('ADMIN_API_TOKEN must be set to a secret of at least 32 characters in production.');
+}
+
 if (databaseUrl) {
   const { Pool } = require('pg');
-  pgPool = new Pool({ connectionString: databaseUrl, ssl: { rejectUnauthorized: true }, max: 5, idleTimeoutMillis: 30000, keepAlive: true });
+  const isNetlify = Boolean(process.env.NETLIFY);
+  pgPool = new Pool({
+    connectionString: databaseUrl,
+    ssl: { rejectUnauthorized: true },
+    max: isNetlify ? 1 : 5,
+    idleTimeoutMillis: isNetlify ? 5000 : 30000,
+    keepAlive: true,
+    allowExitOnIdle: isNetlify
+  });
   pgPool.on('error', (error) => console.error(`Idle Postgres connection error: ${error.message}`));
   db = {
     exec: (sql) => pgPool.query(sql),
@@ -267,12 +283,14 @@ function isConfiguredSecret(value) {
 }
 
 function requestIdentity(request) {
+  const netlifyClientIp = request.headers['x-nf-client-connection-ip'];
+  if (typeof netlifyClientIp === 'string' && netlifyClientIp) return netlifyClientIp;
   const forwardedFor = request.headers['x-forwarded-for'];
   if (process.env.TRUST_PROXY === 'true' && typeof forwardedFor === 'string') {
     const address = forwardedFor.split(',').at(-1).trim();
     if (address) return address;
   }
-  return request.socket.remoteAddress || 'unknown';
+  return request.socket?.remoteAddress || 'unknown';
 }
 
 async function takeRateLimit(request, scope, identity, limit, windowMs) {
@@ -606,19 +624,25 @@ function listenOnAvailablePort(candidate, attempts = 0) {
   server.listen(candidate);
 }
 
-initializeDatabase().then(() => {
-  listenOnAvailablePort(port);
-}).catch((error) => {
-  console.error(`Could not initialize the GoodCut database: ${error.message}`);
-  process.exitCode = 1;
-  return db.close();
-}).catch((error) => {
-  console.error(`Could not close the database cleanly: ${error.message}`);
-  process.exitCode = 1;
-});
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => {
-  Promise.resolve(db.close()).then(() => process.exit(0)).catch((error) => {
+const ready = initializeDatabase();
+
+if (require.main === module) {
+  ready.then(() => {
+    listenOnAvailablePort(port);
+  }).catch((error) => {
+    console.error(`Could not initialize the GoodCut database: ${error.message}`);
+    process.exitCode = 1;
+    return db.close();
+  }).catch((error) => {
     console.error(`Could not close the database cleanly: ${error.message}`);
     process.exitCode = 1;
   });
-}));
+  for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => {
+    Promise.resolve(db.close()).then(() => process.exit(0)).catch((error) => {
+      console.error(`Could not close the database cleanly: ${error.message}`);
+      process.exitCode = 1;
+    });
+  }));
+}
+
+module.exports = { server, ready };

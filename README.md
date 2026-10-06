@@ -28,18 +28,16 @@ International card checkout uses Stripe in USD. Set `STRIPE_SECRET_KEY`, `STRIPE
 
 Never paste payment-provider secrets into chat or browser code. `.env` is ignored by Git; do not commit it.
 
-## Free hosting (Render + Supabase)
+## Free hosting (Netlify + Supabase)
 
-`render.yaml` describes a free Render Node web service. Render assigns it an `onrender.com` subdomain after deployment. Render's free web service sleeps after inactivity and its local filesystem is temporary, so do not use SQLite for hosted data.
+`netlify.toml` configures a Netlify site build, static asset allowlist, and a serverless API function. Netlify assigns the site a `netlify.app` subdomain. The API uses the Supabase PostgreSQL database because Netlify's filesystem is temporary.
 
-To prepare a deploy:
+1. Connect this GitHub repository to Netlify and deploy the `main` branch. Netlify reads the build and publish settings from `netlify.toml`.
+2. In the Netlify site's environment variables, set `NODE_ENV=production`, `DATABASE_URL`, `ADMIN_API_TOKEN`, and `RATE_LIMIT_SECRET`. For `DATABASE_URL`, select the Supabase **Transaction pooler** URI in the project's Connect dialog; do not use a direct or session connection for serverless requests. The URI contains the database password, so enter it only in Netlify's private environment settings.
+3. Generate different random values of at least 32 characters for `ADMIN_API_TOKEN` and `RATE_LIMIT_SECRET`. Save the admin token privately; you need it to unlock `/review.html`. Do not commit or share either value.
+4. Wait for the deploy, then test `/api/barbers`, `Contact.html`, and `/review.html`. Netlify's free plan and Supabase's free project may have limits or pause after inactivity; this is intended for a low-traffic trial, not an uptime guarantee.
 
-1. Create a Supabase project on the free plan and copy its PostgreSQL **session pooler** connection string. Treat it as a password; do not put it in source code.
-2. Create a private GitHub repository for this project and connect it to Render. Choose the repository's `render.yaml` blueprint.
-3. In Render's environment settings, provide `DATABASE_URL` (Supabase connection string), `ADMIN_API_TOKEN`, and `RATE_LIMIT_SECRET`. The blueprint enables trusted proxy IP forwarding for rate limits. Generate the two secrets locally using the PowerShell command above; never send them in chat.
-4. Wait for the Render deployment, open its assigned HTTPS subdomain, and test both `Contact.html` and `/review.html`.
-
-The app creates its Postgres tables on first start. In Postgres mode, optional barber photos are stored as data URLs in the database, so they survive Render restarts along with profiles and feedback. Supabase's free project can pause after a week without activity; Render's free web service sleeps after 15 minutes without traffic. These plans are suitable for a low-traffic trial, not an uptime guarantee. A custom `.com` domain is not included; the free hosting subdomain is.
+The app creates its Postgres tables on first function invocation. In Postgres mode, optional barber photos are stored as data URLs in the database, so they persist across function invocations. Optional Wave and Stripe configuration can also be set in Netlify environment variables; set `PUBLIC_URL` to the final `https://...netlify.app` address before enabling Stripe.
 
 ## API
 
