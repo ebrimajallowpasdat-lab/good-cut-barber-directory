@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f4ef">
+	<meta name="description" content="Find your next great barber. Explore local barbers, compare reviews, and book your Salon.">
+	<title>GoodCut — Find your people</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="javascript.js" defer></script>
+</head>
+<body>
+	<header class="site-header">
+		<a class="wordmark" href="index.html" aria-label="GoodCut home"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a>
+		<nav class="main-nav" aria-label="Main navigation">
+			<a class="nav-current" href="#find">Find a barber</a>
+			<a href="#community">Community</a>
+			<a href="Contact.html">Feedback</a>
+		</nav>
+		<a class="button button-dark header-cta" href="add.html" >Join as a barber <span aria-hidden="true">↗</span></a>
+	</header>
+
+	<main>
+		<section class="hero" id="find">
+			<div class="hero-copy">
+				<p class="eyebrow"><span class="live-dot"></span> GOOD PEOPLE. GREAT CUTS.</p>
+				<h1>Your next<br>great barber<br>is <span class="headline-accent">around.</span></h1>
+				<p class="hero-description">Find the Salon you’ll keep coming back to. Meet independent barbers, see what people say, and make your next cut a good one.</p>
+				<form class="search-bar" id="search-form">
+					<label class="search-field"><span aria-hidden="true" class="search-icon">⌕</span><span class="sr-only">Search by barber, neighborhood, or city</span><input id="search-input" type="search" placeholder="Barber, neighborhood, or city" autocomplete="off"></label>
+					<button class="button button-orange search-submit" type="submit">Find my barber <span aria-hidden="true">→</span></button>
+				</form>
+				<p class="search-hint">Try a city, neighborhood, or barber’s name</p>
+			</div>
+
+			<div class="hero-visual">
+				<img src="/goodcut-logo.svg" alt="GoodCut logo">
+				<div class="image-sticker"><span class="sticker-star">✳</span><span>GOOD CUTS<br>LIVE HERE</span></div>
+				<div class="hero-caption"><span class="caption-dot"></span> The neighborhood Salon, reimagined.</div>
+			</div>
+			<div class="hero-index" aria-hidden="true">01 / YOUR LOCAL LINEUP</div>
+		</section>
+
+		<section class="directory section-wrap" id="directory">
+			<div class="section-heading">
+				<div><p class="eyebrow">THE LOCAL LINEUP</p><h2>Find your kind of cut.</h2></div>
+				<p class="section-note">Real independents. Real reviews.<br>Your next regular is out there.</p>
+			</div><br>
+
+				</div>
+				<label class="sort-control">Sort <select id="sort-select" aria-label="Sort barbers"><option value="rating">Top rated</option><option value="name">Name A–Z</option></select></label>
+			</div>
+			<p class="results-status" id="results-status" aria-live="polite">Finding the good ones…</p>
+			<div class="barber-grid" id="barber-grid" aria-live="polite"></div>
+			<div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No Salons found just yet.</h3><p>Try a different name or city, or be the first barber in your neighborhood.</p><a class="text-link" href="add.html">Add your Salon <span aria-hidden="true">→</span></a></div>
+		</section>
+
+		<section class="community" id="community">
+			<div class="community-inner">
+				<div class="community-copy"><p class="eyebrow eyebrow-light">A LITTLE LOVE FOR THE LOCAL SALON</p><h2>Good cuts are<br>worth passing on.</h2><p>Help independent barbers get seen. Your support keeps the local Salon in the neighborhood and the good work going.</p><div class="community-signoff"><span class="signoff-star">✳</span><span>Independent by nature.<br>Better together.</span></div></div>
+				<form class="donation-box" id="donation-form">
+					<div class="donation-topline"><span>THE COMMUNITY JAR</span><span class="jar-mark">✳</span></div>
+					<h3>Back the good ones.</h3>
+					<p>Choose a contribution to support the GoodCut community.</p>
+					<div class="amount-options" role="group" aria-label="Choose donation amount">
+						<button type="button" class="amount-option" data-amount="5">D5</button><button type="button" class="amount-option is-selected" data-amount="10">D10</button><button type="button" class="amount-option" data-amount="20">D20</button><label class="custom-amount"><span>D</span><input id="custom-amount" type="number" min="1" max="500" placeholder="1.." aria-label="Custom donation amount"></label>
+					</div>
+					<label class="donor-name-label" for="donor-name">Your name <span>optional</span></label>
+					<input class="donor-name" id="donor-name" type="text" maxlength="60" placeholder="Keep it anonymous">
+					<button class="button button-orange donate-submit" type="submit">Put in a little love <span aria-hidden="true">→</span></button>
+					<p class="donation-feedback" id="donation-feedback" aria-live="polite">Choose Wave Mobile Money in The Gambia or international card checkout.</p>
+					<div class="community-total"><span><span class="total-dot"></span> COMMUNITY SUPPORT</span><strong id="community-total">D0.00</strong></div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer"><a class="wordmark footer-wordmark" href="#find"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a><p>Made for the neighborhood Salons.</p><a href="Contact.html">Send developer feedback <span aria-hidden="true">↗</span></a><a href="add.html">Barber? Put yourself on the map <span aria-hidden="true">↗</span></a></footer>
+
+	<dialog class="review-dialog" id="review-dialog">
+		<form class="review-form" id="review-form">
+			<button class="dialog-close" type="button" aria-label="Close review form">×</button>
+			<p class="eyebrow">PASS IT ON</p><h2>How was your cut?</h2><p class="reviewing-name" id="reviewing-name"></p>
+			<input type="hidden" id="review-barber-id">
+			<label class="review-label" for="reviewer-name">Your name</label><input id="reviewer-name" class="form-input" maxlength="60" placeholder="First name or nickname">
+			<label class="review-label">Your rating</label><div class="rating-picker" role="radiogroup" aria-label="Choose a rating"><button type="button" data-rating="1" aria-label="1 star">★</button><button type="button" data-rating="2" aria-label="2 stars">★</button><button type="button" data-rating="3" aria-label="3 stars">★</button><button type="button" data-rating="4" aria-label="4 stars">★</button><button type="button" data-rating="5" aria-label="5 stars">★</button></div><input type="hidden" id="review-rating" value="5">
+			<label class="review-label" for="review-text">The details <span>optional</span></label><textarea class="form-input review-text" id="review-text" maxlength="800" placeholder="What made it a good visit?"></textarea>
+			<p class="form-feedback" id="review-feedback" aria-live="polite"></p><button class="button button-dark form-submit" type="submit">Share your review <span aria-hidden="true">→</span></button>
+		</form>
+	</dialog>
+	<dialog class="review-dialog" id="reviews-dialog">
+		<section class="review-form reviews-panel">
+			<button class="dialog-close" id="reviews-close" type="button" aria-label="Close reviews">×</button>
+			<p class="eyebrow">FROM THE NEIGHBORHOOD</p><h2 id="reviews-title">Customer reviews</h2>
+			<div class="reviews-list" id="reviews-list" aria-live="polite"></div>
+			<button class="button button-dark form-submit" id="write-review-from-list" type="button">Leave a review <span aria-hidden="true">→</span></button>
+		</section>
+	</dialog>
+	<footer>&copy Pasidat Hope Production | &copy; 2027</footer>
+</body>
+</html>

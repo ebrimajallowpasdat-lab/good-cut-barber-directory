@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f4ef">
+	<meta name="description" content="Join GoodCut and introduce your barber salon to the neighborhood.">
+	<title>Join the lineup — GoodCut</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="javascript.js" defer></script>
+</head>
+<body class="signup-page">
+	<header class="site-header">
+		<a class="wordmark" href="index.html" aria-label="GoodCut home"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a>
+		<nav class="main-nav" aria-label="Main navigation"><a href="index.html#directory">Find a barber</a><a href="index.html#community">Community</a><a href="Contact.html">Feedback</a></nav>
+		<a class="button button-dark header-cta" href="index.html">Back to the lineup <span aria-hidden="true">↗</span></a>
+	</header>
+	<main class="signup-layout">
+		<aside class="signup-aside">
+			<p class="eyebrow eyebrow-light"><span class="live-dot"></span> FOR THE PEOPLE BEHIND THE SALON</p>
+			<h1>Put your<br>Salon on<br>the <span>map.</span></h1>
+			<p>Good work deserves to get around. Make a profile, show off your specialties, and let your neighbors find you.</p>
+			<div class="signup-aside-bottom"><span class="aside-mark">✳</span><span>Independent by nature.<br>Better together.</span></div>
+		</aside>
+		<section class="signup-form-wrap">
+			<div class="signup-form-heading"><p class="eyebrow">YOUR GOODCUT PROFILE</p><h2>Introduce yourself.</h2><p>Tell the neighborhood a little about your salon. You can update these details later.</p></div>
+			<form id="barber-form" class="barber-form">
+				<div class="form-row">
+					<div class="form-field"><label for="barber-name">Your name <span>*</span></label><input id="barber-name" name="name" required maxlength="80" autocomplete="name" placeholder="e.g. Lamin Jallow"></div>
+					<div class="form-field"><label for="shop-name">Salon name <span>*</span></label><input id="shop-name" name="shopName" required maxlength="100" autocomplete="organization" placeholder="e.g. Jallow and Sons Salon"></div>
+				</div>
+				<div class="form-field"><label for="barber-city">Neighborhood and region <span>*</span></label><input id="barber-city" name="city" required maxlength="100" placeholder="e.g. Brikama, Jamisa"></div>
+				<div class="form-field"><label for="barber-specialties">Specialties <span>*</span></label><input id="barber-specialties" name="specialties" required maxlength="350" placeholder="Fades, beard trims, natural hair"></div>
+				<div class="form-field"><label for="barber-phone">Contact phone number <span>*</span></label><input id="barber-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" pattern="[+0-9() .-]{7,20}" placeholder="+220 123 4567"><small>Customers will use this number to contact you.</small></div>
+
+				<div class="form-field"><label for="barber-bio">About your Salon <span class="optional-tag">optional</span></label><textarea id="barber-bio" name="bio" maxlength="600" rows="3" placeholder="A few words about your work"></textarea></div>
+				<div class="form-row">
+					<div class="form-field"><label for="barber-image">Profile photo <span class="optional-tag">optional</span></label><input id="barber-image" name="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp"><small>Choose a JPEG, PNG, or WebP image up to 2 MB.</small><img id="barber-image-preview" class="profile-image-preview" alt="Selected barber profile preview" hidden></div>
+					<div class="form-field"><label for="barber-booking">Booking URL <span class="optional-tag">optional</span></label><input id="barber-booking" name="bookingUrl" type="url" maxlength="500" placeholder="https://..."></div>
+				</div>
+				<div class="trap-field" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+				<p class="form-feedback" id="barber-feedback" aria-live="polite"></p>
+				<button class="button button-orange form-submit" type="submit">Add me to the lineup <span aria-hidden="true">→</span></button>
+				<p class="form-legal">Profiles are reviewed before they appear in the public directory.</p>
+			</form>
+		</section>
+	</main>
+	<footer class="site-footer signup-footer"><a class="wordmark footer-wordmark" href="index.html"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a><p>Made for the neighborhood Salon.</p><a href="index.html#directory">Meet the lineup <span aria-hidden="true">↗</span></a>
+	<br>
+&copy Pasidat Hope Production | &copy; 2027</footer>
+</body>
+</html>

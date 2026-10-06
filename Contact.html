@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f4ef">
+	<meta name="description" content="Send private feedback to the GoodCut developer.">
+	<title>Developer feedback — GoodCut</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="javascript.js" defer></script>
+</head>
+<body class="feedback-page">
+	<header class="site-header">
+		<a class="wordmark" href="index.html" aria-label="GoodCut home"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a>
+		<nav class="main-nav" aria-label="Main navigation"><a href="index.html#directory">Find a barber</a><a href="index.html#community">Community</a></nav>
+		<a class="button button-dark header-cta" href="index.html">Back to GoodCut <span aria-hidden="true">↗</span></a>
+	</header>
+	<main class="feedback-main">
+		<section class="feedback-intro">
+			<p class="eyebrow">HELP MAKE GOODCUT BETTER</p>
+			<h1>Send the developer<br><span>your feedback.</span></h1>
+			<p>Your message goes to the private developer review queue. Please don’t include passwords, payment details, or other sensitive information.</p>
+		</section>
+		<form class="feedback-form" id="feedback-form" method="post" action="/api/feedback">
+			<label for="feedback-name">Your name <span class="optional-tag">optional</span></label>
+			<input id="feedback-name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Name or nickname">
+			<label for="feedback-email">Email <span class="optional-tag">optional</span></label>
+			<input id="feedback-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Only if you’d like a reply">
+			<label for="feedback-message">Your feedback <span>*</span></label>
+			<textarea id="feedback-message" name="message" required minlength="5" maxlength="3000" rows="7" placeholder="Tell us what works, what doesn’t, or what you’d like to see next."></textarea>
+			<div class="trap-field" aria-hidden="true"><label for="feedback-website">Leave this field empty</label><input id="feedback-website" name="website" tabindex="-1" autocomplete="off"></div>
+			<p class="form-feedback" id="feedback-status" role="status" aria-live="polite"></p>
+			<button class="button button-orange form-submit" type="submit">Send feedback <span aria-hidden="true">→</span></button>
+			<p class="form-legal">Feedback is visible only to the site administrator in <a href="review.html">the review page</a>.</p>
+		</form>
+	</main>
+	<footer class="site-footer signup-footer"><a class="wordmark footer-wordmark" href="index.html"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a><p>Developer feedback</p><a href="index.html">Back to the directory <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

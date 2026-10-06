@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" role="img" aria-labelledby="title">
+  <title id="title">GoodCut</title>
+  <rect width="1000" height="800" fill="#f6f4ef"/>
+  <circle cx="500" cy="310" r="145" fill="#ee7048"/>
+  <text x="500" y="360" fill="#fffefa" font-family="Arial, sans-serif" font-size="150" font-weight="700" text-anchor="middle">g</text>
+  <text x="500" y="590" fill="#20231f" font-family="Arial, sans-serif" font-size="108" font-weight="700" text-anchor="middle">goodcut<tspan fill="#ee7048">.</tspan></text>
+</svg>

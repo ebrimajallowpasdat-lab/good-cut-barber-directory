@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f4ef">
+	<meta name="robots" content="noindex, nofollow">
+	<title>Barber review — GoodCut</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="review.js" defer></script>
+</head>
+<body class="review-page">
+	<header class="site-header">
+		<a class="wordmark" href="index.html" aria-label="GoodCut home"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a>
+		<nav class="main-nav" aria-label="Main navigation"><a href="index.html">Directory</a><a href="add.html">Add a barber</a><a href="Contact.html">Feedback form</a></nav>
+		<button id="review-logout" class="button button-dark" type="button" hidden>Lock review page</button>
+	</header>
+	<main class="review-main">
+		<section class="review-heading">
+			<p class="eyebrow">GOODCUT ADMIN</p>
+			<h1>Barber <span>review.</span></h1>
+			<p>Check each submitted profile before it appears in the public lineup.</p>
+		</section>
+		<form id="admin-login" class="admin-login">
+			<label for="admin-token">Admin token</label>
+			<div class="admin-token-row"><input id="admin-token" type="password" required minlength="32" autocomplete="current-password" placeholder="Enter the ADMIN_API_TOKEN from .env"><button class="button button-orange" type="submit">Unlock queue <span aria-hidden="true">→</span></button></div>
+		</form>
+		<p id="review-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+		<section id="pending-section" class="pending-section" aria-labelledby="pending-title" hidden>
+			<div class="pending-heading"><h2 id="pending-title">Pending profiles</h2><button id="refresh-pending" class="button button-dark" type="button">Refresh</button></div>
+			<div id="pending-list" class="pending-list"></div>
+		</section>
+		<section id="pending-donations-section" class="pending-section" aria-labelledby="pending-donations-title" hidden>
+			<div class="pending-heading"><h2 id="pending-donations-title">Wave transfer confirmations</h2></div>
+			<div id="pending-donations-list" class="pending-list"></div>
+		</section>
+		<section id="feedback-section" class="pending-section" aria-labelledby="feedback-title" hidden>
+			<div class="pending-heading"><h2 id="feedback-title">Developer feedback</h2></div>
+			<div id="developer-feedback-list" class="pending-list"></div>
+		</section>
+	</main>
+	<footer class="site-footer signup-footer"><a class="wordmark footer-wordmark" href="index.html"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a><p>Review access is restricted to admins.</p><a href="index.html">Back to the directory <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

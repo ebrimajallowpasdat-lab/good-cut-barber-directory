@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f4ef">
+    <meta name="description" content="Support local barbers through Wave Mobile Money or international card checkout.">
+    <title>Support GoodCut — Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="payment.js" defer></script>
+</head>
+<body class="payment-page">
+    <header class="site-header">
+        <a class="wordmark" href="index.html" aria-label="GoodCut home"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a>
+        <nav class="main-nav" aria-label="Main navigation"><a href="index.html#directory">Find a barber</a><a href="index.html#community">Community</a><a href="Contact.html">Feedback</a></nav>
+        <a class="button button-dark header-cta" href="index.html#community">Back to community</a>
+    </header>
+    <main class="payment-main">
+        <section class="payment-intro">
+            <p class="eyebrow">THE COMMUNITY JAR</p>
+            <h1>Send a little <span>support.</span></h1>
+            <p>Choose the payment method that works for you. Wave transfers are confirmed manually before they count toward community support.</p>
+        </section>
+        <section class="payment-content" aria-label="Donation payment">
+            <section id="payment-form" class="payment-form">
+                <div class="payment-fields">
+                    <label for="payment-amount" id="payment-amount-label">Amount in Gambian dalasi</label>
+                    <div class="payment-amount-input"><span id="payment-currency-symbol">D</span><input id="payment-amount" type="number" min="1" max="500" step="1" required></div>
+                    <label for="payment-donor-name">Your name <span class="optional-tag">optional</span></label>
+                    <input id="payment-donor-name" type="text" maxlength="60" placeholder="Keep it anonymous">
+                </div>
+                <fieldset class="payment-method-picker">
+                    <legend>Payment method</legend>
+                    <label class="payment-method-option"><input type="radio" name="paymentMethod" value="wave" checked><span><strong>Wave Mobile Money</strong><small>Local transfer · GMD</small></span></label>
+                    <label class="payment-method-option"><input type="radio" name="paymentMethod" value="card"><span><strong>International card</strong><small>Secure Stripe checkout · USD</small></span></label>
+                </fieldset>
+                <p id="payment-feedback" class="payment-feedback" role="status" aria-live="polite"></p>
+                <section id="wave-payment" class="payment-method-panel">
+                    <div id="wave-account-details" class="wave-account-details">
+                        <p>Send your chosen amount to the GoodCut Wave account. We’ll give you a reference for your transfer confirmation.</p>
+                        <dl><div><dt>Account name</dt><dd id="wave-account-name">Loading…</dd></div><div><dt>Wave number</dt><dd id="wave-account-phone">Loading…</dd></div></dl>
+                        <button class="button button-orange payment-action" id="start-wave-transfer" type="button">Show transfer steps <span aria-hidden="true">→</span></button>
+                    </div>
+                    <div id="wave-confirmation" class="wave-confirmation" hidden>
+                        <p class="payment-instruction">Open Wave and send <strong id="wave-amount-due"></strong> to the account above. Keep the Wave transaction ID from your receipt.</p>
+                        <p class="tracking-reference">GoodCut reference <strong id="wave-tracking-reference"></strong></p>
+                        <form id="wave-reference-form">
+                            <label for="wave-transaction-reference">Wave transaction ID</label>
+                            <input id="wave-transaction-reference" required maxlength="80" pattern="[A-Za-z0-9-]{6,80}" placeholder="Enter the ID from your Wave receipt">
+                            <button class="button button-orange payment-action" type="submit">Submit transfer for confirmation <span aria-hidden="true">→</span></button>
+                        </form>
+                    </div>
+                </section>
+                <section id="card-payment" class="payment-method-panel" hidden>
+                    <p>Pay securely by card in US dollars. Your card details are entered on Stripe’s checkout page, never on GoodCut.</p>
+                    <button class="button button-orange payment-action" id="start-card-payment" type="button">Continue to card checkout <span aria-hidden="true">→</span></button>
+                </section>
+            </section>
+            <aside class="payment-note"><span class="note-mark" aria-hidden="true">✳</span><p>GoodCut never asks for your Wave PIN or card number on this page. Wave transfer claims are reviewed before they are counted.</p></aside>
+        </section>
+    </main>
+    <footer class="site-footer signup-footer"><a class="wordmark footer-wordmark" href="index.html"><span class="brand-mark">g</span> goodcut<span class="wordmark-period">.</span></a><p>Made for the neighborhood chair.</p><a href="index.html#directory">Back to GoodCut <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>
